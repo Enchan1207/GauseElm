@@ -42,20 +42,11 @@ int main(int argc, const char * argv[]) {
     //解の配列
     double ans[4] = {0, 0, 0, 0};
     
-    //解4はすでに出ている
-    ans[3] = coef[3][4];
-    
-    //解3を出す
-    ans[2] = coef[2][4] - coef[2][3] * ans[3];
-    
-    //解2を出す
-    ans[1] = coef[1][4] - coef[1][2] * ans[2] - coef[1][3] * ans[3];
-    
-    //解1を出す
-    ans[0] = coef[0][4] - coef[0][1] * ans[1] - coef[0][2] * ans[2] - coef[0][3] * ans[3];
-    
-    cat(coef);
-    
+    for (int i = 3; i >= 0; i--) {
+        ans[i] = coef[i][4] - coef[i][1] * ans[1] - coef[i][2] * ans[2] - coef[i][3] * ans[3];
+        
+    }
+    //--表示
     for(int i = 0; i < 4; i++){
         printf("x%d = %.2lf\n", i + 1, ans[i]);
     }
